@@ -1,0 +1,35 @@
+﻿<Page x:Class="WPFClient.Views.Pages.TeamPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPFClient.Views.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TeamPage">
+
+    <Grid Background="White">
+        <Label Content="Team Details" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="124"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="14,67,0,0" TextWrapping="Wrap" Name="searchForTeamInput" Text="Search for Team" VerticalAlignment="Top" Width="196"/>
+        <Button Content="Search" HorizontalAlignment="Left" Margin="225,67,0,0" VerticalAlignment="Top" Width="119" Click="Button_Click" Height="23"/>
+        <TextBox Name="teamNameInput" HorizontalAlignment="Left" Height="23" Margin="425,115,0,0" TextWrapping="Wrap" Text="Enter Team name" VerticalAlignment="Top" Width="239"/>
+
+        <ListView Name="teamViewList" HorizontalAlignment="Left" Height="201" Margin="14,115,0,0" VerticalAlignment="Top" Width="330" SelectionChanged="ListView_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" Width="100" DisplayMemberBinding="{Binding Id}" />
+                    <GridViewColumn Header="Team Name" Width="225" DisplayMemberBinding="{Binding Name}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label Content="Create/Update Details" HorizontalAlignment="Left" Margin="461,63,0,0" VerticalAlignment="Top" Width="168"/>
+        <Button Content="Create" HorizontalAlignment="Left" Margin="602,296,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+        <Button Content="Update" HorizontalAlignment="Left" Margin="508,296,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click_2"/>
+        <Button Content="Delete" HorizontalAlignment="Left" Margin="416,296,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_3"/>
+        <ComboBox x:Name="playersComboBox" HorizontalAlignment="Left" Margin="480,269,0,0" VerticalAlignment="Top" Width="184" SelectionChanged="playersComboBox_SelectionChanged"/>
+        <Label x:Name="lblPlayers" Content="Players On team:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="376,187,0,0"/>
+        <Label x:Name="lblPlayer5" Content="Change Player:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="387,265,0,0"/>
+        <ListBox x:Name="playerListBox" HorizontalAlignment="Left" Height="120" Margin="480,144,0,0" VerticalAlignment="Top" Width="184" SelectionChanged="listBoxPlayers_SelectionChanged"/>
+
+    </Grid>
+</Page>

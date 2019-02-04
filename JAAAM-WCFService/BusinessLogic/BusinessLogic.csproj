@@ -41,7 +41,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\EventController.cs" />
+    <Compile Include="Controllers\MatchController.cs" />
+    <Compile Include="Controllers\PlayerController.cs" />
+    <Compile Include="Controllers\TeamController.cs" />
+    <Compile Include="Interfaces\IEventController.cs" />
+    <Compile Include="Interfaces\IMatchController.cs" />
+    <Compile Include="Interfaces\IPlayerController.cs" />
+    <Compile Include="Interfaces\ITeamController.cs" />
+    <Compile Include="Interfaces\IUserController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Controllers\UserController.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{695f04b2-75c5-479b-a6af-da23dc7ddef1}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{34e22398-3683-476e-953d-3b568376bf0e}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

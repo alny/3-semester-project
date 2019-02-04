@@ -1,0 +1,51 @@
+﻿@model List<JAAAM_WebClient.WCFService.Event>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Event Page";
+}
+
+
+<div>
+
+</div>
+
+
+<div id="titlebar" class="gradient">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <h2>Events:</h2><span>Current Live Events:</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                @foreach (JAAAM_WebClient.WCFService.Event e in Model) {
+                    <div class="col-lg-4 col-md-6">
+                        <a href="Event/EventDetails/@e.Id" class="listing-item-container compact">
+                            <div class="listing-item">
+                                <img src="~/Content/img/@e.Id .jpg" alt="">
+
+                                <div class="listing-badge now-open">Live</div>
+
+                                <div class="listing-item-content">
+                                    <div class="numerical-rating" data-rating="CS:GO"></div>
+                                    <h3>@e.Name <i class="fas fa-gamepad"></i></h3>
+                                    <span>@e.Type</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    </div>
+</div>

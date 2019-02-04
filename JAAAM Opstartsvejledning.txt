@@ -1,0 +1,50 @@
+﻿#########################################################
+#     /$$$$$  /$$$$$$   /$$$$$$   /$$$$$$  /$$      /$$ #
+#    |__  $$ /$$__  $$ /$$__  $$ /$$__  $$| $$$    /$$$ #
+#       | $$| $$  \ $$| $$  \ $$| $$  \ $$| $$$$  /$$$$ #
+#       | $$| $$$$$$$$| $$$$$$$$| $$$$$$$$| $$ $$/$$ $$ #
+#  /$$  | $$| $$__  $$| $$__  $$| $$__  $$| $$  $$$| $$ #
+# | $$  | $$| $$  | $$| $$  | $$| $$  | $$| $$\  $ | $$ #
+# |  $$$$$$/| $$  | $$| $$  | $$| $$  | $$| $$ \/  | $$ #
+#  \______/ |__/  |__/|__/  |__/|__/  |__/|__/     |__/ #
+#########################################################
+#################Opstartsvejledning######################
+#########################################################
+
+1.
+Dette dokument indeholder instruktioner i opstart af JAAAM
+projektet lavet af Gruppe 5, DMAA0917.
+
+2.
+Fremgangsmåden er som følger:
+
+	1) Åben og build solutions i følgende rækkefølge:
+		- JAAAM-WCFService (Som administrator)
+		- JAAAM-Blockchain
+		- SignalRSelfHost1 (Som administrator)
+		- JAAAM-WebClient
+		- JAAAM-WPFClient
+
+	
+	2) Kør projekter i følgende rækkefølge:
+		- JAAAM-WCFService
+		- SignalRSelfHost1
+			- Set multiple startup projects:
+				JsonParser
+				SignalRSelfHost1
+		- WPFClient
+		- WebClient
+
+3.
+Grundet opsætningen omkring distribuerede
+transaktioner på UCN serveren Kraka, skal følgende
+scripts i mappen SQL Scripts køres i
+rækkefølge på en lokal SQL server:
+	- JaaamSQLScript_v5.sql
+	- DummyData_v2
+	
+Der sørges der for at krakas connectionstring er
+udkommenteret, og stringen til en lokal SQL server indkommenteres.
+Dette gøres i app.config i følgende projekter:
+	- JAAAM-WCFService
+	- JsonParser

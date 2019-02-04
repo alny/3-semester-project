@@ -9,7 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{695F04B2-75C5-479B-A6AF-DA23DC7DDEF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFTest", "WCFTest\WCFTest.csproj", "{C0F16AAE-4849-4F49-B122-40E35E2DBFE3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemTest", "WCFTest\SystemTest.csproj", "{C0F16AAE-4849-4F49-B122-40E35E2DBFE3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{34D7A382-1BBE-4421-8F0A-B718C5EACF6C} = {34D7A382-1BBE-4421-8F0A-B718C5EACF6C}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFService", "WCFService\WCFService.csproj", "{34D7A382-1BBE-4421-8F0A-B718C5EACF6C}"
 EndProject

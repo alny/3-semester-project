@@ -1,0 +1,38 @@
+﻿<Page x:Class="WPFClient.Views.Pages.EventPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPFClient.Views.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="EventPage">
+
+    <Grid Background="White">
+        <Label Content="Event Details" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="124"/>
+
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="14,67,0,0" TextWrapping="Wrap" Name="searchForEventInput" Text="Search for Event" VerticalAlignment="Top" Width="196"/>
+        <Button Content="Search" HorizontalAlignment="Left" Margin="225,67,0,0" VerticalAlignment="Top" Width="119" Click="Button_Click" Height="23"/>
+        <TextBox Name="eventNameInput" HorizontalAlignment="Left" Height="23" Margin="425,115,0,0" TextWrapping="Wrap" Text="Enter event name" VerticalAlignment="Top" Width="239"/>
+
+        <ListView Name="eventViewList" HorizontalAlignment="Left" Height="201" Margin="14,115,0,0" VerticalAlignment="Top" Width="330" SelectionChanged="ListView_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" Width="100" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Game Name" Width="100" DisplayMemberBinding="{Binding GameName}" />
+                    <GridViewColumn Header="Event Type" Width="120" DisplayMemberBinding="{Binding Type}" />
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBox Name="eventGameNameInput" HorizontalAlignment="Left" Height="23" Margin="425,164,0,0" TextWrapping="Wrap" Text="Enter game name" VerticalAlignment="Top" Width="239"/>
+        <TextBox Name="eventTypeInput" HorizontalAlignment="Left" Height="23" Margin="425,211,0,0" TextWrapping="Wrap" Text="Enter event type" VerticalAlignment="Top" Width="239"/>
+        <Label Content="Create/Update Details" HorizontalAlignment="Left" Margin="461,63,0,0" VerticalAlignment="Top" Width="168"/>
+        <Button Content="Create" HorizontalAlignment="Left" Margin="589,296,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+        <Button Content="Update" HorizontalAlignment="Left" Margin="495,296,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click_2"/>
+        <Button Content="Delete" HorizontalAlignment="Left" Margin="403,296,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_3"/>
+        <CheckBox Content="Event Held" Name="eventHeld" HorizontalAlignment="Left" Margin="425,256,0,0" VerticalAlignment="Top" Width="97" />
+        <Button x:Name="btnDetails" Content="Details" HorizontalAlignment="Left" Margin="589,256,0,0" VerticalAlignment="Top" Width="75" Click="btnDetails_Click"/>
+
+    </Grid>
+</Page>

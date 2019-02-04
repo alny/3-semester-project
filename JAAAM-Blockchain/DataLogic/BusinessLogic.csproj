@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Program\JAAAM-Blockchain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Model">
+      <HintPath>..\..\JAAAM-WCFService\Model\bin\Debug\Model.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

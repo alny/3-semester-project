@@ -1,0 +1,28 @@
+﻿<Window x:Class="WPFClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFClient"
+        xmlns:views="clr-namespace:WPFClient.Views"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+    <TabControl HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="782">
+        <TabItem x:Name="Dashboard" Header="Dashboard">
+            <Grid Background="#FFE5E5E5"/>
+        </TabItem>
+        <TabItem x:Name="ManageContent" Header="Manage Content">
+            <Grid Background="#FFE5E5E5" Margin="0,0,-14,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="72*"/>
+                    <ColumnDefinition Width="153*"/>
+                    <ColumnDefinition Width="565*"/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+        </TabItem>
+        </TabControl>
+
+    </Grid>
+
+</Window>

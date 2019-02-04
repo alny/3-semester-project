@@ -1,0 +1,252 @@
+﻿@model JAAAM_WebClient.Models.MatchViewModel
+@{
+    ViewBag.Title = "Live Matches";
+}
+<script type="text/javascript">
+    var SignalrConnection;
+    var MatchProxy;
+
+    function Connect() {
+        var matchServerUrl = "http://localhost:8080/";
+        var matchUrl = matchServerUrl + "signalr";
+        //This will hold the connection to the signalr hub
+        SignalrConnection = $.hubConnection(matchUrl, {
+            useDefaultPath: false
+        });
+        MatchProxy = SignalrConnection.createHubProxy('MatchHub');
+        //connecting the client to the signalr hub
+        SignalrConnection.logging = true;
+        SignalrConnection.start().done(function () {
+                console.log("Connected!");
+            })
+            .fail(function () {
+                alert("failed in connecting to the signalr server");
+            })
+    }
+    function oddsIdentifier() {
+        MatchProxy.on('addOdds', function (odds) {
+            $(".matchName").each(function (i, obj) {
+                if ($(obj).text().indexOf(odds.Match.Name) !== -1) {
+                    $(`#${odds.Match.Teams[0].Name}`).text(odds.Odds1.toFixed(2));
+                    $(`#${odds.Match.Teams[1].Name}`).text(odds.Odds2.toFixed(2));
+                }
+
+            });
+        })
+    }
+    $(document).ready(function () {
+        Connect();
+    });
+
+</script>
+
+<div class="container">
+    <div class="row">
+        @foreach (JAAAM_WebClient.WCFService.Match m in Model.Matches) {
+            <div class="col-lg-6 col-md-12">
+                <div class="dashboard-list-box invoices with-icons margin-top-20">
+                    <h4 class="matchName">@m.Name</h4>
+                    <ul>
+                        <li>
+                            <i class="list-box-icon"><i style="color: #eb1a3e;" class="fab fa-hotjar"></i></i>
+                            <strong></strong>
+                            <ul>
+                                <li class="paid">Live</li>
+                                <li><a style="text-decoration: none; color: inherit; font-size: 14px" id="@m.Teams[0].Id" href="#" data-toggle="modal" data-target=".1">@m.Teams[0].Name Odds:  <strong style="font-size: 16px" id="@m.Teams[0].Name"></strong></a></li>
+                                <li><a style="text-decoration: none; color: inherit; font-size: 14px" id="@m.Teams[1].Id" href="#" data-toggle="modal" data-target=".2">@m.Teams[1].Name Odds:  <strong id="@m.Teams[1].Name"></strong></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <script>
+            $(document).ready(function () {
+                $("#@m.Teams[0].Id").click(function () {
+                    $(".modal-body #odds").text($('#@m.Teams[0].Name').text());
+                    $(".modal-body #teamName").text("@m.Teams[0].Name")
+                    $(".modal-body #teamId").text(@m.Teams[0].Id);
+                    $(".modal-body #matchId").text(@m.Id);
+                    $(".modal-body #modal1").text(1);
+                    $(".modal-body #balance").text(@Model.User.Account.Balance);
+
+                });
+
+                $("#@m.Teams[1].Id").click(function () {
+                    $(".modal-body #odds2").text($('#@m.Teams[1].Name').text())
+                    $(".modal-body #teamName2").text("@m.Teams[1].Name")
+                    $(".modal-body #teamId2").text(@m.Teams[1].Id)
+                    $(".modal-body #matchId2").text(@m.Id)
+                    $(".modal-body #modal2").text(2);
+                    $(".modal-body #balance2").text(@Model.User.Account.Balance);
+                });
+            });
+
+            setTimeout(function JoinMatch() {
+                oddsIdentifier();
+                MatchProxy.invoke('JoinMatch', "@m.Name");
+                }, 500)
+
+            </script>
+        }
+
+    </div>
+    <script>
+
+        function triggerPlaceBet(amount) {
+            var balance1 = $(".modal-body #balance").text();
+
+            if (parseInt(balance1) < parseInt(amount)) {
+                alert("Not enough money on account");
+            } else {
+                var modal1 = $(".modal-body #modal1").text();
+                var modal2 = $(".modal-body #modal2").text();
+
+                if (modal2 == 2) {
+                    var odds = $(".modal-body #odds2").text();
+                    var team = $(".modal-body #teamId2").text();
+                    var match = $(".modal-body #matchId2").text();
+                } else if (modal1 == 1) {
+                    var odds = $(".modal-body #odds").text();
+                    var team = $(".modal-body #teamId").text();
+                    var match = $(".modal-body #matchId").text();
+                }
+
+                var BetData = {
+                    Odds: odds,
+                    TeamId: team,
+                    MatchId: match,
+                    Amount: amount,
+                    UserId: 5
+                };
+
+                $.ajax({
+                    url: '/Match/Matches',
+                    type: 'POST',
+                    data: JSON.stringify(BetData),
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        console.log(data.success);
+                        console.log(data.DevMessage);
+                        alert(data.UserMessage);
+                    },
+                });
+                $('#modal1').modal('hide');
+            }
+        }
+
+        function triggerPlaceBet2(amount) {
+
+            var balance2 = $(".modal-body #balance2").text();
+            if (parseInt(balance2) < parseInt(amount)) {
+                alert("Not enough money on account");
+            } else {
+
+                var modal1 = $(".modal-body #modal1").text();
+                var modal2 = $(".modal-body #modal2").text();
+
+                if (modal2 == 2) {
+                    var odds = $(".modal-body #odds2").text();
+                    var team = $(".modal-body #teamId2").text();
+                    var match = $(".modal-body #matchId2").text();
+                } else if (modal1 == 1) {
+                    var odds = $(".modal-body #odds").text();
+                    var team = $(".modal-body #teamId").text();
+                    var match = $(".modal-body #matchId").text();
+                }
+
+                var BetData = {
+                    Odds: odds,
+                    TeamId: team,
+                    MatchId: match,
+                    Amount: amount,
+                    UserId: 5
+                };
+
+                $.ajax({
+                    url: '/Match/Matches',
+                    type: 'POST',
+                    data: JSON.stringify(BetData),
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        console.log(data.success);
+                        console.log(data.DevMessage);
+                        alert(data.UserMessage);
+                    },
+                    error: function () {
+                        console.log("error");
+                    }
+                });
+                $('#modal2').modal('hide');
+            }
+
+        }
+      
+    </script>
+</div>
+    
+
+<div class="modal 1" tabindex="-1" role="dialog" id="modal1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <strong>Balance: </strong><p id="balance"></p>
+                <strong>Odds: </strong><p id="odds"></p>
+                <strong>Team: </strong><p id="teamName"></p>
+                <p id="teamId" hidden></p>
+                <p id="matchId" hidden></p>
+                <p id="modal1" hidden></p>
+
+                <strong>Amount:</strong><input type="type" name="name" id="amount" value="" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="triggerPlace" type="button" class="btn btn-primary">Place Bet</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        $("#triggerPlace").click(function () {
+            var amount = $(".modal-body #amount").val();
+            triggerPlaceBet(amount);
+        });
+    </script>
+</div>
+
+<div class="modal 2" tabindex="-1" role="dialog" id="modal2">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <strong>Balance: </strong><p id="balance2"></p>
+                <strong>Odds: </strong><p id="odds2"></p>
+                <strong>Team: </strong><p id="teamName2"></p>
+                <p id="teamId2" hidden></p>
+                <p id="matchId2" hidden></p>
+                <p id="modal2" hidden></p>
+
+                <strong>Amount:</strong><input type="type" name="name" id="amount2" value="" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="triggerPlace2" type="button" class="btn btn-primary">Place Bet</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        $("#triggerPlace2").click(function () {
+            var amount = $(".modal-body #amount2").val();
+            triggerPlaceBet2(amount);
+        });
+    </script>
+</div>

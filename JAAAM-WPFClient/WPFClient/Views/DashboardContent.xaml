@@ -1,0 +1,41 @@
+﻿<Page x:Class="WPFClient.Views.DashboardContent"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPFClient.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="DashboardContent" >
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="239*"/>
+            <ColumnDefinition Width="561*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Live Match Log:" HorizontalAlignment="Left" Margin="211,45,0,0" VerticalAlignment="Top" Width="114" Grid.Column="1"/>
+        <ListBox Name="roundList" HorizontalAlignment="Left" Height="186" Margin="211,86,0,0" VerticalAlignment="Top" Width="288" Grid.Column="1"/>
+        <Label Content="Status: " HorizontalAlignment="Left" Margin="211,10,0,0" VerticalAlignment="Top" Grid.Column="1" RenderTransformOrigin="0.208,0.462"/>
+        <Label Name="cStatus" Content="Not Connected" HorizontalAlignment="Left" Margin="264,10,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label Content="Current Odds: " HorizontalAlignment="Left" Margin="211,277,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <TextBox Name="Odds1" HorizontalAlignment="Left" Height="23" Margin="285,311,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62" Grid.Column="1"/>
+        <TextBox Name="Odds2" HorizontalAlignment="Left" Height="23" Margin="285,342,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62" Grid.Column="1"/>
+        <Label Content="Team 1: " HorizontalAlignment="Left" Margin="211,308,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label Content="Team 2: " HorizontalAlignment="Left" Margin="211,339,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label Content="Current Live Matches: " HorizontalAlignment="Left" Margin="25,48,0,0" VerticalAlignment="Top" Width="139"/>
+        <ListView Name="matchViewList" HorizontalAlignment="Left" Height="186" Margin="25,86,0,0" VerticalAlignment="Top" Width="276" Grid.ColumnSpan="2" SelectionChanged="ListView_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" Width="60" DisplayMemberBinding="{Binding Id}" />
+                    <GridViewColumn Header="Match Name" Width="212" DisplayMemberBinding="{Binding Name}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Name="joinMatch" Content="Join Match" HorizontalAlignment="Left" Margin="25,283,0,0" VerticalAlignment="Top" Width="83" Click="Button_Click_1"/>
+        <Label Content="Score: " Grid.Column="1" HorizontalAlignment="Left" Margin="341,48,0,0" VerticalAlignment="Top"/>
+        <Label Name="teamOne" Content="0" Grid.Column="1" HorizontalAlignment="Left" Margin="419,48,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="-" Grid.Column="1" HorizontalAlignment="Left" Margin="441,48,0,0" VerticalAlignment="Top"/>
+        <Label Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="461,48,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Name="teamTwo" Content="0" Grid.Column="1" HorizontalAlignment="Left" Margin="461,48,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Button Name="leaveMatch" Content="Leave Match" HorizontalAlignment="Left" Margin="124,283,0,0" VerticalAlignment="Top" Width="79" Click="leaveMatch_Click"/>
+    </Grid>
+</Page>

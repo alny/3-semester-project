@@ -1,0 +1,133 @@
+﻿@using System.Diagnostics
+@using JAAAM_WebClient.WCFService;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAAAM Live Bet - @ViewBag.Title</title>
+
+    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/jquery.signalR-2.4.0.js")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <link rel="stylesheet" href="~/Content/style.css">
+    <link rel="stylesheet" href="~/Content/colors/main.css" id="colors">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <div id="wrapper">
+        <header id="header-container">
+
+            <!-- Header -->
+            <div id="header">
+                <div class="container">
+                    <div class="left-side">
+                        <div style="margin-right: 300px" id="logo">
+                            <a href="/"><img style="max-height: 95px; position: absolute; top: 5px" src="~/Content/img/jaaam_v2.png" alt=""></a>
+
+                        </div>
+                        <div class="mmenu-trigger">
+                            <button class="hamburger hamburger--collapse" type="button">
+                                <span class="hamburger-box">
+                                    <span class="hamburger-inner"></span>
+                                </span>
+                            </button>
+                        </div>
+                        <nav id="navigation" class="style-1">
+                            <ul id="responsive">
+                                <li>
+                                    @Html.ActionLink("Events", "Index", "Event")
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Live Matches", "Matches", "Match")
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Profile", "Index", "User")
+                                </li>
+                            </ul>
+                        </nav>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="right-side">
+
+                        <div class="header-widget">
+                            <a href="#" data-toggle="modal" data-target=".3" class="button border with-icon">Sign Out <i class="fas fa-sign-out-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="clearfix"></div>
+        @RenderBody()
+    </div>
+
+    <div class="modal 3" tabindex="-1" role="dialog" id="loginModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Sign In</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label>Username: </label>
+                        <input id="userName" />
+                        <label>Password: </label>
+                        <input id="passWord" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="triggerLogin" type="button" class="btn btn-primary">Login</button>
+                </div>
+            </div>
+        </div>
+        <script>
+            $("#triggerLogin").click(function () {
+                var username = $("#userName").val();
+                var password = $("#passWord").val();
+
+                triggerLogin(username, password);
+            });
+        </script>
+    </div>
+    <script>
+
+        function triggerLogin(username, password) {
+
+            var userJson = {
+                username,
+                password
+            }
+
+            $.ajax({
+                url: '/User/UserLogin',
+                type: 'POST',
+                data: JSON.stringify(userJson),
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    console.log(data.success);
+                    console.log(data.userId);
+                },
+                error: function () {
+                    console.log("error");
+                }
+
+            });
+
+            $('#loginModal').modal('hide');
+
+        }
+    </script>
+
+</body>
+</html>

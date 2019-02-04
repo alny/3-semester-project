@@ -1,0 +1,107 @@
+﻿@model JAAAM_WebClient.WCFService.User
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<div class="container">
+    <div class="row">
+
+        <div id="titlebar" class="gradient">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="user-profile-titlebar">
+                            <div class="user-profile-avatar"><img src="https://vignette.wikia.nocookie.net/the-darkest-minds/images/4/47/Placeholder.png/revision/latest?cb=20160927044640" alt=""></div>
+                            <div class="user-profile-name">
+                                <h2>@Model.FirstName @Model.LastName</h2>
+                                <div class="star-rating" data-rating="5">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row sticky-wrapper">
+
+        <div class="col-lg-4 col-md-4 margin-top-0">
+
+            <div class="verified-badge with-tip">
+                <i class="fas fa-money-check-alt"></i> Balance: @Model.Account.Balance DKK
+            </div>
+
+            <div class="boxed-widget margin-top-30 margin-bottom-50">
+                <h3>Details</h3>
+                <ul class="listing-details-sidebar">
+                    <li><i class="fas fa-phone-square"></i> @Model.PhoneNumber</li>
+                    <li><i class="fas fa-envelope-square"></i> <a href="#">@Model.Email</a></li>
+
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="col-lg-8 col-md-8 padding-left-30">
+
+            <h3 class="margin-top-0 margin-bottom-40">@Model.FirstName's Bets: </h3>
+
+            <div class="row">
+                @foreach (JAAAM_WebClient.WCFService.Bet b in Model.Bets) {
+                    <div class="col-lg-12 col-md-12">
+                        <div class="listing-item-container list-layout">
+                            <a href="#" class="listing-item">
+
+
+                               @if (b.Verified) {
+                                    <div class="listing-item-image">
+                                        <img src="https://cdn.mos.cms.futurecdn.net/fAe5M9dFmtAy9hhwaiDLqK.jpg" alt="">
+                                        <span class="tag">Completed</span>
+                                    </div>
+
+                                    <div class="listing-item-content">
+                                        <div class="listing-badge now-open">Won</div>
+
+                                        <div class="listing-item-inner">
+                                            <h3>Match: @b.Type</h3>
+
+                                            <h3>Bet on: @b.WinCondition.Name</h3>
+                                            <span>Odds: <strong>@b.Odds</strong></span>
+                                            <br />
+                                            <span>Amount: <strong>@b.Amount</strong></span>
+                                        </div>
+                                    </div>
+                                }
+                                else {
+                                    <div class="listing-item-image">
+                                        <img src="https://cdn.mos.cms.futurecdn.net/fAe5M9dFmtAy9hhwaiDLqK.jpg" alt="">                                      
+                                    </div>
+
+                                    <div class="listing-item-content">
+                                        <div class="listing-item-inner">
+                                            <h3>Match: @b.Type</h3>
+
+                                            <h3>Bet on: @b.WinCondition.Name</h3>
+                                            <span>Odds: <strong>@b.Odds</strong></span>
+                                            <br />
+                                            <span>Amount: <strong>@b.Amount</strong></span>
+                                        </div>
+                                    </div>
+                                }
+
+
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+﻿<Page x:Class="WPFClient.Views.Pages.PlayerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPFClient.Views.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PlayerPage">
+
+    <Grid Background="White">
+        <Label Content="Player Details" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="124"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="14,67,0,0" TextWrapping="Wrap" Name="searchForPlayerInput" Text="Search for Player" VerticalAlignment="Top" Width="196"/>
+        <Button Content="Search" HorizontalAlignment="Left" Margin="225,67,0,0" VerticalAlignment="Top" Width="119" Click="Button_Click" Height="23"/>
+        <TextBox Name="nickNameInput" HorizontalAlignment="Left" Height="23" Margin="425,115,0,0" TextWrapping="Wrap" Text="Enter Nickname" VerticalAlignment="Top" Width="239"/>
+
+        <ListView Name="playerViewList" HorizontalAlignment="Left" Height="201" Margin="14,115,0,0" VerticalAlignment="Top" Width="330" SelectionChanged="ListView_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="NickName" Width="90" DisplayMemberBinding="{Binding NickName}" />
+                    <GridViewColumn Header="Age" Width="70" DisplayMemberBinding="{Binding Age}" />
+                    <GridViewColumn Header="Role" Width="80" DisplayMemberBinding="{Binding Role}" />
+                    <GridViewColumn Header="Team" Width="80" DisplayMemberBinding="{Binding Team.Name}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label Content="Create/Update Details" HorizontalAlignment="Left" Margin="461,63,0,0" VerticalAlignment="Top" Width="168"/>
+        <Button Content="Create" HorizontalAlignment="Left" Margin="599,296,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+        <Button Content="Update" HorizontalAlignment="Left" Margin="505,296,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click_2"/>
+        <Button Content="Delete" HorizontalAlignment="Left" Margin="413,296,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_3"/>
+        <TextBox x:Name="ageInput" HorizontalAlignment="Left" Height="23" Margin="425,156,0,0" TextWrapping="Wrap" Text="Enter age" VerticalAlignment="Top" Width="239"/>
+        <TextBox x:Name="roleInput" HorizontalAlignment="Left" Height="23" Margin="425,195,0,0" TextWrapping="Wrap" Text="Enter role" VerticalAlignment="Top" Width="239"/>
+        <ComboBox Name="teamComboBox" HorizontalAlignment="Left" Margin="425,248,0,0" VerticalAlignment="Top" Width="239" SelectionChanged="ComboBox_SelectionChanged"/>
+
+    </Grid>
+</Page>

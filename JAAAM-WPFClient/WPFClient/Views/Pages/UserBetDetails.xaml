@@ -1,0 +1,24 @@
+﻿<Window x:Class="WPFClient.Views.Pages.UserBetDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFClient.Views.Pages"
+        mc:Ignorable="d"
+        Title="UserBetDetails" Height="245.524" Width="641.84">
+    <Grid Margin="0,0,-32,0">
+        <ListView x:Name="betListView" HorizontalAlignment="Left" Height="166" Margin="10,10,0,0" VerticalAlignment="Top" Width="601">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" Width="50" DisplayMemberBinding="{Binding Id}" />
+                    <GridViewColumn Header="Amount" Width="65" DisplayMemberBinding="{Binding Amount}" />
+                    <GridViewColumn Header="Odds" Width="100" DisplayMemberBinding="{Binding Odds}" />
+                    <GridViewColumn Header="Match" Width="180" DisplayMemberBinding="{Binding Type}" />
+                    <GridViewColumn Header="Bet On" Width="200" DisplayMemberBinding="{Binding WinCondition.Name}" />
+                  
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Margin="536,181,0,0" VerticalAlignment="Top" Width="75" Click="btnClose_Click"/>
+    </Grid>
+</Window>

@@ -32,7 +32,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,7 +43,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBConnection.cs" />
+    <Compile Include="DBEvent.cs" />
+    <Compile Include="DBMatch.cs" />
+    <Compile Include="DBPlayer.cs" />
+    <Compile Include="DBTeam.cs" />
+    <Compile Include="DBUser.cs" />
+    <Compile Include="Interfaces\IDBEvent.cs" />
+    <Compile Include="Interfaces\IDBMatch.cs" />
+    <Compile Include="Interfaces\IDBPlayer.cs" />
+    <Compile Include="Interfaces\IDBTeam.cs" />
+    <Compile Include="Interfaces\IDBUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{34E22398-3683-476E-953D-3B568376BF0E}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{34e22398-3683-476e-953d-3b568376bf0e}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

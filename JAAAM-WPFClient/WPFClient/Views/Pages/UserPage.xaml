@@ -1,0 +1,43 @@
+﻿<Page x:Class="WPFClient.Views.Pages.UserPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPFClient.Views.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="UserPage">
+
+    <Grid Background="White">
+        <Label Content="User Details" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="124"/>
+
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="14,67,0,0" TextWrapping="Wrap" Name="searchForUserInput" Text="Search for User" VerticalAlignment="Top" Width="196"/>
+        <Button Content="Search" HorizontalAlignment="Left" Margin="225,67,0,0" VerticalAlignment="Top" Width="119" Click="Button_Click" Height="23"/>
+
+        <ListView Name="userViewList" HorizontalAlignment="Left" Height="215" Margin="14,115,0,0" VerticalAlignment="Top" Width="422" SelectionChanged="ListView_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="FirstName" Width="65" DisplayMemberBinding="{Binding FirstName}" />
+                    <GridViewColumn Header="LastName" Width="65" DisplayMemberBinding="{Binding LastName}" />
+                    <GridViewColumn Header="UserName" Width="65" DisplayMemberBinding="{Binding UserName}" />
+                    <GridViewColumn Header="Email" Width="65" DisplayMemberBinding="{Binding Email}" />
+                    <GridViewColumn Header="PhoneNr" Width="65" DisplayMemberBinding="{Binding PhoneNumber}" />
+                    <GridViewColumn Header="Balance" Width="65" DisplayMemberBinding="{Binding Account.Balance}" />
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBox Name="userFirstNameInput" HorizontalAlignment="Left" Height="23" Margin="475,92,0,0" TextWrapping="Wrap" Text="Enter Firstname" VerticalAlignment="Top" Width="227"/>
+        <TextBox Name="userLastNameInput" HorizontalAlignment="Left" Height="23" Margin="475,136,0,0" TextWrapping="Wrap" Text="Enter Lastname" VerticalAlignment="Top" Width="227"/>
+        <TextBox Name="userUserNameInput" HorizontalAlignment="Left" Height="23" Margin="475,181,0,0" TextWrapping="Wrap" Text="Enter Username" VerticalAlignment="Top" Width="227"/>
+        <TextBox Name="userEmailInput" HorizontalAlignment="Left" Height="24" Margin="475,225,0,0" TextWrapping="Wrap" Text="Enter Email" VerticalAlignment="Top" Width="227"/>
+        <TextBox Name="userPhoneInput" HorizontalAlignment="Left" Height="24" Margin="475,273,0,0" TextWrapping="Wrap" Text="Enter Phone number" VerticalAlignment="Top" Width="227"/>
+        <Label Content="Create/Update Details" HorizontalAlignment="Left" Margin="512,49,0,0" VerticalAlignment="Top" Width="168"/>
+        <Button Content="Create" HorizontalAlignment="Left" Margin="638,337,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+        <Button Content="Update" HorizontalAlignment="Left" Margin="545,337,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click_2"/>
+        <Button Content="Delete" HorizontalAlignment="Left" Margin="453,337,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_3"/>
+        <Button Content="Find Bets" HorizontalAlignment="Left" Margin="14,351,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_4"/>
+
+
+    </Grid>
+</Page>
